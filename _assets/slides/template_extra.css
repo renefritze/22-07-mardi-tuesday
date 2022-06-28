@@ -1,0 +1,11 @@
+.footnote {
+  font-size: 9pt;
+}
+.container {
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.col {
+  flex: 1;
+}
