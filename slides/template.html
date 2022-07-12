@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{{base}}}/dist/reveal.css" />
     <link rel="stylesheet" href="{{{themeUrl}}}" id="theme" />
     <link rel="stylesheet" href="{{{base}}}{{{highlightThemeUrl}}}" />
-    <link rel="stylesheet" href="{{{base}}}/edit/style.css">
+
     {{#cssPaths}}
     <link rel="stylesheet" href="{{{.}}}" />
     {{/cssPaths}}
@@ -24,17 +24,16 @@
     {{#watch}}
 
     <script>
-            document.write(
-              '<script src="http://' +
-              (location.host || 'localhost').split(':')[0] +
-              ':35729/livereload.js?snipver=1"></' +
-              'script>'
-            );
-          </script>
-        {{/watch}}
+          document.write(
+            '<script src="http://' +
+            (location.host || 'localhost').split(':')[0] +
+            ':35729/livereload.js?snipver=1"></' +
+            'script>'
+          );
+        </script>
+      {{/watch}}
     </head>
-
-    <body>
+  <body>
     <div class="reveal">
       <div class="slides">{{{slides}}}</div>
     </div>
@@ -60,26 +59,28 @@
         return target;
       }
 
-  // default options to init reveal.js
-  var defaultOptions = {
-    controls: true,
-    progress: true,
-    history: true,
-    center: true,
-    transition: 'default', // none/fade/slide/convex/concave/zoom
-    plugins: [
-      RevealMarkdown,
-      RevealHighlight,
-      RevealZoom,
-      RevealNotes,
-      RevealMath
-    ]
-  };
+          // default options to init reveal.js
+          var defaultOptions = {
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            controls: false,
+            slideNumber: false,
+            plugins: [
+              RevealMarkdown,
+              RevealHighlight,
+              RevealZoom,
+              RevealNotes,
+              RevealMath
+            ]
+          };
 
       // options from URL query string
-            var queryOptions = Reveal().getQueryHash() || {};
+          var queryOptions = Reveal().getQueryHash() || {};
 
-            var options = extend(defaultOptions, {{{ revealOptionsStr }}}, queryOptions);
+          var options = extend(defaultOptions, {{{ revealOptionsStr }}}, queryOptions);
         </script>
 
     {{#scriptPaths}}
@@ -89,5 +90,5 @@
     <script>
       Reveal.initialize(options);
     </script>
-    </body>
+  </body>
 </html>
