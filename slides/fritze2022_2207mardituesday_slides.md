@@ -7,17 +7,17 @@ revealOptions:
   slideNumber: true
 ---
 
-# Progress Update TA2 M1+2
+# Progress Update
 
-<small>René Fritze</small>
+## Task Area 2 ‒ Measure 2
 
 <small>rene.fritze@wwu.de</small>
 
 <small>Applied Mathematics Münster</small>
 
-<small>Jul 12th, 2022</small>
+<small>*MaRDI Tuesday* ‒ July 12th, 2022</small>
 
-<small>*MaRDI Tuesday*</small>
+<small></small>
 
 ---
 
@@ -36,15 +36,18 @@ graph LR;
    Driver ==== Connector ==== Implementor;
 ```
 
+---
+
+## Prototype Project Setup
+
 - Connector is a C library
 - Driver isolated from Implementor
-- Drivers can be script-like (Python) or binary-like (C++)
+- Drivers can dynamically load or statically link against Connector
+- Connector dynamically loads Implementor
 
 ---
 
-## Prototype
-
-# Runtime
+## Runtime flow
 
 ```mermaid
 sequenceDiagram
@@ -63,7 +66,7 @@ sequenceDiagram
 
 ---
 
-# Drivers and Implementors available in
+# Available Drivers and Implementors
 
 - C
 - C++
@@ -76,9 +79,11 @@ sequenceDiagram
 # API Design
 
 ```C
-// Connector's interface
+// Connector's interface (What the Drivers see)
 int oif_connector_init(const char *lang);
 int oif_connector_eval_expression(const char *str);
+int oif_connector_solve(int N, const double *const A,
+                      const double *const b, double *x);
 void oif_connector_deinit();
 ```
 
@@ -87,13 +92,15 @@ void oif_connector_deinit();
 # API Design
 
 ```C
-// Implementor's interface
+// Implementor's interface (What the Connector sees)
 int oif_lang_init();
 int oif_lang_eval_expression(const char *str);
+int oif_lang_solve(int N, const double *const A,
+                   const double *const b, double *x);
 void oif_lang_deinit();
 ```
 
----
+<!-- ---
 
 # Python -> Julia Example
 
@@ -110,4 +117,11 @@ sequenceDiagram
   Connector ->>+ Implementor: oif_lang_init()
   Driver ->>+ Connector: oif_connector_eval_expression("print(6*7)")
   Connector ->>+ Implementor: oif_lang_eval_expression("print(6*7)")
-```
+``` -->
+
+---
+
+# Misc
+
+- Testing all Driver -> Implementor Combinations (with pytest)
+- Documentation Setup (Sphinx + Doxygen via breathe)
