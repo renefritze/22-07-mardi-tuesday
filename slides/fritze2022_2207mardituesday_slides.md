@@ -66,15 +66,6 @@ sequenceDiagram
 
 ---
 
-# Available Drivers and Implementors
-
-- C
-- C++
-- Python
-- Julia
-- R
-
----
 
 # API Design
 
@@ -118,6 +109,16 @@ sequenceDiagram
   Driver ->>+ Connector: oif_connector_eval_expression("print(6*7)")
   Connector ->>+ Implementor: oif_lang_eval_expression("print(6*7)")
 ``` -->
+
+---
+
+# Available Drivers and Implementors
+
+- C
+- C++
+- Python
+- Julia
+- R
 
 ---
 
