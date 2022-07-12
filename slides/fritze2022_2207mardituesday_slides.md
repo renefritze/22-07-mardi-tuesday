@@ -66,6 +66,14 @@ sequenceDiagram
 
 ---
 
+# Algorithm test cases
+
+1. String expression evaluation
+2. Linear system solve
+
+   $Ax=b$
+
+---
 
 # API Design
 
